@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  become: yes
+  vars:
+    packer_base_url: https://releases.hashicorp.com/packer/0.12.2/
+    packer_pkg: packer_0.12.2_linux_amd64.zip
+    packer_version_str: "Packer v0.12.2"
+
+  roles:
+    - ldx_.packer
+

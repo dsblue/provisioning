@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Install VIM
+      apt: pkg=vim state=present
+      become: yes
+    - name: Install Dotfiles
+      git: >
+        repo=git@github.com/beberlei/vim-dotfiles.git
+        dest=/home/${ansible_user_id}/.vim
+    - name: Create .vimrc Symlink
+      file: >
+        src=/home/${ansible_user_id}/.vim/vimrc
+        dest=/home/${ansible_user_id}/.vimrc
+        state=symlink
+    - name: Compile and Install Command-T plugin
+      command: >
+        rake make
+        chdir=/home/${ansible_user_id}/.vim/bundle/Command-T
+        creates=/home/${ansible_uesr_id}/.vim/bundle/Command-T/command-t.recipe

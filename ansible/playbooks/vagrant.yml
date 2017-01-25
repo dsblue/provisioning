@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: Install Vagrant
+    apt:
+      name: vagrant
+      update_cache: yes
+
